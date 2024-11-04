@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 class Category extends StatefulWidget {
   const Category({
     super.key,
-    required this.icon,
     required this.category,
     required this.ispush,
   });
 
-  final IconData icon;
   final String category;
   final bool ispush;
 
@@ -35,7 +33,6 @@ class _CategoryState extends State<Category> {
             ispush = !ispush;
           });
         },
-        icon: Icon(widget.icon),
         label: Text(widget.category),
       ),
     );
