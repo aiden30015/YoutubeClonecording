@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.white ,
         appBar: PreferredSize(
-          preferredSize: Size(200, 50),
+          preferredSize: const Size(200, 50),
           child: Padding(
             padding: const EdgeInsets.only(top: 50,left: 10,right: 10),
             child: Row(
@@ -32,21 +32,27 @@ class MyApp extends StatelessWidget {
                     flex: 2,
                     child: Image.asset('assets/images/youtubelogo.png')
                 ),
-                Flexible(
+                const Flexible(
                     flex: 1,
                     child: SizedBox(),
                 ),
-                TopButton(icon: Icons.screen_share,widget: SharingScreen()),
-                TopButton(icon: CupertinoIcons.alarm,widget: AlarmScreen()),
-                TopButton(icon: CupertinoIcons.search,widget: SearchScreen(),),
-                Flexible(
+                const TopButton(icon: Icons.screen_share,widget: SharingScreen()),
+                const TopButton(icon: CupertinoIcons.alarm,widget: AlarmScreen()),
+                const TopButton(icon: CupertinoIcons.search,widget: SearchScreen(),),
+                const Flexible(
                   flex: 1,
                   child: Myprofile(size: 32,),
                 )
               ],
             ),
           ),
-        )
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+          ],
+        ),
       ),
     );
   }
