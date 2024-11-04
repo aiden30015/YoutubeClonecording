@@ -6,7 +6,7 @@ import 'package:youtubeclonecording/screens/sharing_screen.dart';
 import 'package:youtubeclonecording/screens/alarm_screen.dart';
 import 'package:youtubeclonecording/screens/myprofile_screen.dart';
 import 'package:youtubeclonecording/screens/search_screen.dart';
-
+import 'package:youtubeclonecording/widgets/category_button.dart';
 
 void main(){
   runApp(const MyApp());
@@ -50,7 +50,20 @@ class MyApp extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
+          ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Category_Button(category: "전체", ispush: ispush),
+            Category_Button(category: "게임", ispush: ispush),
+            Category_Button(category: "음악", ispush: ispush),
+            Category_Button(category: "라이브", ispush: ispush),
+            Category_Button(category: "뉴스", ispush: ispush),
+            Category_Button(category: "요리", ispush: ispush),
+            Category_Button(category: "최근에 업로드된 영상", ispush: ispush),
+            Category_Button(category: "감상한 동영상", ispush: ispush),
+            Category_Button(category: "새로운 맞춤 동영상", ispush: ispush)
+              ],
+            )
           ],
         ),
       ),
