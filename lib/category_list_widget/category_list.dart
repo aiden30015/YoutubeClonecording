@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:youtubeclonecording/widgets/category_button.dart';
+import 'package:youtubeclonecording/category_list_widget/category_button.dart';
 
 class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
