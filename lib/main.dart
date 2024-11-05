@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:youtubeclonecording/widgets/category_list.dart';
+import 'package:youtubeclonecording/category_list_widget/category_list.dart';
 import 'package:youtubeclonecording/widgets/myprofile.dart';
 import 'package:youtubeclonecording/widgets/top_button.dart';
 import 'package:youtubeclonecording/screens/sharing_screen.dart';
 import 'package:youtubeclonecording/screens/alarm_screen.dart';
-import 'package:youtubeclonecording/screens/myprofile_screen.dart';
+import 'package:youtubeclonecording/myprofile_widgets/myprofile_screen.dart';
 import 'package:youtubeclonecording/screens/search_screen.dart';
-import 'package:youtubeclonecording/widgets/category_button.dart';
+import 'package:youtubeclonecording/category_list_widget/category_button.dart';
 
 void main(){
   runApp(const MyApp());
