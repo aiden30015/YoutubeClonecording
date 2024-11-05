@@ -17,11 +17,21 @@ class CategoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(category),
+      child: Text(
+          category,
+          style: TextStyle(
+          color: isSelected ? Colors.white:Colors.black,
+      ),
+      ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
           isSelected ? Colors.black : Colors.white70,
         ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          )
+        )
       ),
     );
   }
