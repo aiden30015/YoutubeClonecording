@@ -9,14 +9,14 @@ class CategoryList extends StatefulWidget {
 }
 
 class _CategoryListState extends State<CategoryList> {
-  final Set<String> selectedCategories = {};
+  String? selectedCategory;
 
   void toggleCategory(String category) {
     setState(() {
-      if (selectedCategories.contains(category)) {
-        selectedCategories.remove(category);
+      if (selectedCategory == category) {
+        selectedCategory = null;
       } else {
-        selectedCategories.add(category);
+        selectedCategory = category;
       }
     });
   }
@@ -30,11 +30,14 @@ class _CategoryListState extends State<CategoryList> {
     return ListView(
       scrollDirection: Axis.horizontal,
       children: categories.map((category) {
-        final isSelected = selectedCategories.contains(category);
-        return CategoryButton(
-          category: category,
-          isSelected: isSelected,
-          onPressed: () => toggleCategory(category),
+        final isSelected = selectedCategory == category;
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: CategoryButton(
+            category: category,
+            isSelected: isSelected,
+            onPressed: () => toggleCategory(category),
+          ),
         );
       }).toList(),
     );
