@@ -5,10 +5,7 @@ import 'package:youtubeclonecording/widgets/myprofile.dart';
 import 'package:youtubeclonecording/widgets/top_button.dart';
 import 'package:youtubeclonecording/screens/sharing_screen.dart';
 import 'package:youtubeclonecording/screens/alarm_screen.dart';
-import 'package:youtubeclonecording/myprofile_widgets/myprofile_screen.dart';
 import 'package:youtubeclonecording/screens/search_screen.dart';
-import 'package:youtubeclonecording/category_list_widget/category_button.dart';
-
 import 'api/youtube_data_api.dart';
 
 void main(){
@@ -100,22 +97,23 @@ class _MyAppState extends State<MyApp> {
                 child: _isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : ListView.builder(
-                  itemCount: _videos.length,
-                  itemBuilder: (context, index) {
+                    itemCount: _videos.length,
+                    itemBuilder: (context, index) {
                     final video = _videos[index];
                     final title = video['snippet']['title'];
-                    final description = video['snippet']['description'];
                     final thumbnailUrl = video['snippet']['thumbnails']['default']['url'];
                     final uploader = video['snippet']['channelTitle'];
-                    return ListTile(
-                      leading: Image.network(thumbnailUrl),
-                      title: Text(title),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    return SizedBox(
+                      width: 300,
+                      child: Column(
                         children: [
-                          Text('Uploader: $uploader'),
-                          SizedBox(height: 4),
-                          Text('Description: $description'),
+                          Image.network(thumbnailUrl),
+                          Column(
+                            children: [
+                              Text(title),
+                              Text('$uploader'),
+                            ],
+                          )
                         ],
                       ),
                     );

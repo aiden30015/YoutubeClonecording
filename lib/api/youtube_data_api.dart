@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class YoutubeService {
-  final String apiKey = 'YOUR_API_KEY';  // API 키를 여기에 입력하세요
+  final String apiKey = 'AIzaSyA0DLPh28kaTELo5cocfh3YcfH7N383kE0';
   final String baseUrl = 'https://www.googleapis.com/youtube/v3';
 
   Future<List<dynamic>> fetchVideoList() async {
