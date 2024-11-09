@@ -9,12 +9,45 @@ import 'package:youtubeclonecording/myprofile_widgets/myprofile_screen.dart';
 import 'package:youtubeclonecording/screens/search_screen.dart';
 import 'package:youtubeclonecording/category_list_widget/category_button.dart';
 
+import 'api/youtube_data_api.dart';
+
 void main(){
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  final YoutubeService _youtubeService = YoutubeService();
+  List<dynamic> _videos = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchVideos();
+  }
+
+  void _fetchVideos() async {
+    try {
+      final videos = await _youtubeService.fetchVideoList();
+      setState(() {
+        _videos = videos;
+        _isLoading = false;
+      });
+    } catch (e) {
+      print("Error: $e");
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +84,7 @@ class MyApp extends StatelessWidget {
                     ],
                   ),
                 ),
-                Flexible(
+                const Flexible(
                     flex: 1,
                     child: CategoryList()
                 ),
@@ -59,9 +92,38 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        body: Column(
-          children: [
-          ],
+        body: Scrollbar(
+          child: Column(
+            children: [
+              Flexible(
+                flex: 1,
+                child: _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                  itemCount: _videos.length,
+                  itemBuilder: (context, index) {
+                    final video = _videos[index];
+                    final title = video['snippet']['title'];
+                    final description = video['snippet']['description'];
+                    final thumbnailUrl = video['snippet']['thumbnails']['default']['url'];
+                    final uploader = video['snippet']['channelTitle'];
+                    return ListTile(
+                      leading: Image.network(thumbnailUrl),
+                      title: Text(title),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Uploader: $uploader'),
+                          SizedBox(height: 4),
+                          Text('Description: $description'),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
