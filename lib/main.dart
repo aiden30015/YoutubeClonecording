@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtubeclonecording/category_list_widget/category_list.dart';
+import 'package:youtubeclonecording/videolist/youtube_video_list.dart';
 import 'package:youtubeclonecording/widgets/myprofile.dart';
 import 'package:youtubeclonecording/widgets/top_button.dart';
 import 'package:youtubeclonecording/screens/sharing_screen.dart';
@@ -21,30 +22,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  final YoutubeService _youtubeService = YoutubeService();
-  List<dynamic> _videos = [];
-  bool _isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchVideos();
-  }
-
-  void _fetchVideos() async {
-    try {
-      final videos = await _youtubeService.fetchVideoList();
-      setState(() {
-        _videos = videos;
-        _isLoading = false;
-      });
-    } catch (e) {
-      print("Error: $e");
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
 
   @override
     Widget build(BuildContext context) {
@@ -85,35 +63,14 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Column(
             children: [
-              _isLoading
-                  ? const Expanded(child: Center(child: CircularProgressIndicator()))
-                  : Expanded(
-                child: ListView.builder(
-                  itemCount: _videos.length,
-                  itemBuilder: (context, index) {
-                    final video = _videos[index];
-                    final title = video['snippet']['title'];
-                    final thumbnailUrl = video['snippet']['thumbnails']['high']['url'];
-                    final uploader = video['snippet']['channelTitle'];
-                    return Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.network(
-                            thumbnailUrl,
-                            width: double.infinity,
-                            height: 240,
-                            fit: BoxFit.cover,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(title, style: Theme.of(context).textTheme.titleMedium),
-                          Text(uploader, style: Theme.of(context).textTheme.bodySmall),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+              YoutubeVideoList(),
+            ],
+          ),
+          bottomNavigationBar: Row(
+            children: [
+              ElevatedButton(
+                  onPressed: (){},
+                  child: Text("테스트"),
               ),
             ],
           ),
