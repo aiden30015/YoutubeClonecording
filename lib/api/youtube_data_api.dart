@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class YoutubeService {
-  final String apiKey = 'AIzaSyA0DLPh28kaTELo5cocfh3YcfH7N383kE0';
+  final String apiKey = 'AIzaSyAAjwxHitXWnraPc4TicPCli9cHOz_ZrIg';
   final String baseUrl = 'https://www.googleapis.com/youtube/v3';
 
   Future<List<dynamic>> fetchVideoList() async {
     final url = Uri.parse(
-      '$baseUrl/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=KR&key=$apiKey',
+      '$baseUrl/videos?part=snippet&chart=mostPopular&maxResults=50&regionCode=KR&key=$apiKey',
     );
 
     final response = await http.get(url);
