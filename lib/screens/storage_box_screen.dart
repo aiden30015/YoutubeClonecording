@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class SubscribeScreen extends StatelessWidget {
-  const SubscribeScreen({super.key});
+class StorageBoxScreen extends StatelessWidget {
+  const StorageBoxScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
