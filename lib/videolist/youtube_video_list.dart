@@ -49,8 +49,24 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
           final title = video['snippet']['title'];
           final thumbnailUrl = video['snippet']['thumbnails']['high']['url'];
           final uploader = video['snippet']['channelTitle'];
-          return Container(
-            padding: const EdgeInsets.all(8.0),
+          return ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero
+                ),
+              ),
+              side: MaterialStateProperty.all(
+                BorderSide.none,
+              ),
+              backgroundColor: MaterialStateProperty.all(
+                Colors.white
+              ),
+              padding: MaterialStateProperty.all(
+                EdgeInsets.all(8.0),
+              )
+            ),
+            onPressed: (){},
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
