@@ -21,6 +21,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      iconSize: 28,
       selectedItemColor: Colors.black,
       selectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.bold,
@@ -34,7 +35,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       currentIndex: widget.currentIndex,
       items: _navItems.map((item) {
         return BottomNavigationBarItem(
-          icon: Icon(item.activeIcon),
+          icon: Icon(item.activeIcon,),
           label: item.label,
         );
       }).toList(),
