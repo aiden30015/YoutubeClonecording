@@ -63,7 +63,7 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
                 Colors.white
               ),
               padding: MaterialStateProperty.all(
-                EdgeInsets.all(8.0),
+                const EdgeInsets.all(8.0),
               )
             ),
             onPressed: (){},
@@ -77,8 +77,16 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: 8),
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
-                Text(uploader, style: Theme.of(context).textTheme.bodySmall),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Text(title, style: Theme.of(context).textTheme.titleMedium),
+                        Text(uploader, style: Theme.of(context).textTheme.bodySmall),
+                      ],
+                    )
+                  ],
+                )
               ],
             ),
           );

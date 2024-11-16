@@ -18,5 +18,6 @@ class YoutubeService {
     } else {
       throw Exception('Failed to load videos');
     }
+
   }
 }

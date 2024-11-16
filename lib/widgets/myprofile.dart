@@ -9,9 +9,6 @@ class Myprofile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      CupertinoIcons.profile_circled,
-      size: size,
-    );//Image.asset();
+    return Placeholder();
   }
 }
