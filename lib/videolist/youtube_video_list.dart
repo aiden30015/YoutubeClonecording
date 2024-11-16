@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:youtubeclonecording/screens/video_screen.dart';
 
 import '../api/youtube_data_api.dart';
 
@@ -49,24 +50,14 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
           final title = video['snippet']['title'];
           final thumbnailUrl = video['snippet']['thumbnails']['high']['url'];
           final uploader = video['snippet']['channelTitle'];
-          return ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(
-                const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.zero
-                ),
-              ),
-              side: MaterialStateProperty.all(
-                BorderSide.none,
-              ),
-              backgroundColor: MaterialStateProperty.all(
-                Colors.white
-              ),
-              padding: MaterialStateProperty.all(
-                const EdgeInsets.all(8.0),
+          return InkWell(
+            onTap:() {
+              Navigator.push(
+                  context, MaterialPageRoute(
+                  builder: (context) => VideoScreen(videoId: video['id'])
               )
-            ),
-            onPressed: (){},
+              );
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -77,16 +68,8 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Text(title, style: Theme.of(context).textTheme.titleMedium),
-                        Text(uploader, style: Theme.of(context).textTheme.bodySmall),
-                      ],
-                    )
-                  ],
-                )
+                Text(title, style: Theme.of(context).textTheme.titleMedium),
+                Text(uploader, style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           );
