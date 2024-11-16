@@ -54,7 +54,12 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
             onTap:() {
               Navigator.push(
                   context, MaterialPageRoute(
-                  builder: (context) => VideoScreen(videoId: video['id'])
+                  builder: (context) =>
+                      VideoScreen(
+                        videoId: video['id'],
+                        videoTitle: title,
+                        videoUploader: uploader,
+                      )
               )
               );
             },
