@@ -40,45 +40,48 @@ class _YoutubeVideoListState extends State<YoutubeVideoList> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? const Expanded(child: Center(child: CircularProgressIndicator()))
-        : Expanded(
-      child: ListView.builder(
-        itemCount: _videos.length,
-        itemBuilder: (context, index) {
-          final video = _videos[index];
-          final title = video['snippet']['title'];
-          final thumbnailUrl = video['snippet']['thumbnails']['high']['url'];
-          final uploader = video['snippet']['channelTitle'];
-          return InkWell(
-            onTap:() {
-              Navigator.push(
-                  context, MaterialPageRoute(
-                  builder: (context) =>
-                      VideoScreen(
-                        videoId: video['id'],
-                        videoTitle: title,
-                        videoUploader: uploader,
-                      )
-              )
-              );
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  thumbnailUrl,
-                  width: double.infinity,
-                  height: 240,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 8),
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
-                Text(uploader, style: Theme.of(context).textTheme.bodySmall),
-              ],
-            ),
-          );
-        },
+    return Padding(
+      padding : EdgeInsets.symmetric(vertical: 10),
+      child: _isLoading
+          ? const Expanded(child: Center(child: CircularProgressIndicator()))
+          : Expanded(
+        child: ListView.builder(
+          itemCount: _videos.length,
+          itemBuilder: (context, index) {
+            final video = _videos[index];
+            final title = video['snippet']['title'];
+            final thumbnailUrl = video['snippet']['thumbnails']['high']['url'];
+            final uploader = video['snippet']['channelTitle'];
+            return InkWell(
+              onTap:() {
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (context) =>
+                        VideoScreen(
+                          videoId: video['id'],
+                          videoTitle: title,
+                          videoUploader: uploader,
+                        )
+                )
+                );
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.network(
+                    thumbnailUrl,
+                    width: double.infinity,
+                    height: 240,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(title, style: Theme.of(context).textTheme.titleMedium),
+                  Text(uploader, style: Theme.of(context).textTheme.bodySmall),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
