@@ -28,6 +28,7 @@ class _VideoScreenState extends State<VideoScreen> {
       flags: const YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
+        captionLanguage: 'kr'
       ),
     );
   }
@@ -42,7 +43,7 @@ class _VideoScreenState extends State<VideoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.videoTitle), // 제목 표시
+        title: Text(widget.videoTitle),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
